@@ -1,13 +1,20 @@
 class Solution {
-    public boolean queryString(String s, int n) {
-        if (n > 1023) {
-            return false;
+    public String baseNeg2(int n) {
+        if (n == 0) {
+            return "0";
         }
-        for (int i = n; i > n / 2; i--) {
-            if (!s.contains(Integer.toBinaryString(i))) {
-                return false;
+        int k = 1;
+        StringBuilder ans = new StringBuilder();
+        while (n != 0) {
+            if (n % 2 != 0) {
+                ans.append(1);
+                n -= k;
+            } else {
+                ans.append(0);
             }
+            k *= -1;
+            n /= 2;
         }
-        return true;
+        return ans.reverse().toString();
     }
 }
